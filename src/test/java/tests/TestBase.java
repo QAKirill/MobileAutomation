@@ -5,6 +5,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import drivers.BrowserstackDriver;
 import helpers.Attach;
+import helpers.Credentials;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -21,6 +22,9 @@ public class TestBase {
         Configuration.browser = BrowserstackDriver.class.getName();
         Configuration.browserSize = null;
         Configuration.timeout = 30000;
+
+        Credentials.user = System.getProperty("user", "ivanovivan_Mubgxt");
+        Credentials.key = System.getProperty("key", "czPhMp9qsL7c22N23D9M");
     }
 
     @BeforeEach

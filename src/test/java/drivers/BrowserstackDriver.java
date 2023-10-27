@@ -1,6 +1,7 @@
 package drivers;
 
 import com.codeborne.selenide.WebDriverProvider;
+import helpers.Credentials;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
@@ -18,8 +19,8 @@ public class BrowserstackDriver implements WebDriverProvider {
         MutableCapabilities mutableCapabilities = new MutableCapabilities();
 
         // Set your access credentials
-        mutableCapabilities.setCapability("browserstack.user", "ivanovivan_Mubgxt");
-        mutableCapabilities.setCapability("browserstack.key", "czPhMp9qsL7c22N23D9M");
+        mutableCapabilities.setCapability("browserstack.user", Credentials.user);
+        mutableCapabilities.setCapability("browserstack.key", Credentials.key);
 
         // Set URL of the application under test
         mutableCapabilities.setCapability("app", "bs://c700ce60cf13ae8ed97705a55b8e022f13c5827c");
