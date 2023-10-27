@@ -1,7 +1,9 @@
 package drivers;
 
 import com.codeborne.selenide.WebDriverProvider;
-import helpers.Credentials;
+import configs.AuthConfig;
+import configs.DeviceConfig;
+import helpers.ConfigReader;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
@@ -17,17 +19,19 @@ public class BrowserstackDriver implements WebDriverProvider {
     @Override
     public WebDriver createDriver(@Nonnull Capabilities capabilities) {
         MutableCapabilities mutableCapabilities = new MutableCapabilities();
+        AuthConfig authConfig = ConfigReader.INSTANCE.getAuthConfig();
+        DeviceConfig deviceConfig = ConfigReader.INSTANCE.getDeviceConfig();
 
         // Set your access credentials
-        mutableCapabilities.setCapability("browserstack.user", Credentials.user);
-        mutableCapabilities.setCapability("browserstack.key", Credentials.key);
+        mutableCapabilities.setCapability("browserstack.user", authConfig.getUser());
+        mutableCapabilities.setCapability("browserstack.key", authConfig.getUser());
 
         // Set URL of the application under test
         mutableCapabilities.setCapability("app", "bs://c700ce60cf13ae8ed97705a55b8e022f13c5827c");
 
         // Specify device and os_version for testing
-        mutableCapabilities.setCapability("device", "Google Pixel 3");
-        mutableCapabilities.setCapability("os_version", "9.0");
+        mutableCapabilities.setCapability("device", deviceConfig.getDeviceName());
+        mutableCapabilities.setCapability("os_version", deviceConfig.getOsVersion());
 
         // Set other BrowserStack capabilities
         mutableCapabilities.setCapability("project", "First Java Project");
@@ -38,7 +42,7 @@ public class BrowserstackDriver implements WebDriverProvider {
         // and desired capabilities defined above
         try {
             return new RemoteWebDriver(
-                    new URL("https://hub.browserstack.com/wd/hub"), mutableCapabilities);
+                    new URL(authConfig.getURL()), mutableCapabilities);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
