@@ -21,6 +21,7 @@ dependencies {
     testImplementation (
             'org.aeonbits.owner:owner:1.0.12',
             "org.assertj:assertj-core:3.24.2",
+            "commons-io:commons-io:2.11.0",
             "com.codeborne:selenide:$selenideVersion",
             "io.qameta.allure:allure-selenide:$allureVersion",
             "io.appium:java-client:8.3.0",
