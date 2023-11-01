@@ -3,6 +3,7 @@ package tests;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import pages.OnboardingPage;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.visible;
@@ -16,7 +17,12 @@ public class AndroidTests extends TestBase {
     @Tag("Android")
     @DisplayName("Успешный поиск в википедии")
     void successfulSearchTest() {
-        back();
+        step("Пропускаем онбординг", () -> {
+            if($(id("org.wikipedia.alpha:id/primaryTextView")).isDisplayed()){
+                back();
+            }
+        });
+
         step("Выполняем поиск", () -> {
             $(accessibilityId("Search Wikipedia")).click();
             $(id("org.wikipedia.alpha:id/search_src_text")).sendKeys("Appium");
@@ -27,7 +33,7 @@ public class AndroidTests extends TestBase {
     }
 
     @Test
-    @Tag("Android")
+    @Tag("Browserstack")
     @DisplayName("При открытии статьи отображается ошибка")
     void errorWhenOpeningArticleTest() {
         step("Выполняем поиск", () -> {
@@ -43,6 +49,26 @@ public class AndroidTests extends TestBase {
 
         step("Отображается ошибка", () -> {
             $(id("org.wikipedia.alpha:id/view_wiki_error_text")).shouldBe(visible);
+        });
+    }
+
+    @Test
+    @Tag("Android")
+    @DisplayName("Успешное прохождение онбординга и поиск в википедии")
+    void onboardingTest() {
+        OnboardingPage page = new OnboardingPage();
+
+        page.checkPageHeading("The Free Encyclopedia")
+                .tapForward()
+                .checkPageHeading("New ways to explore")
+                .tapForward()
+                .checkPageHeading("Reading lists with sync")
+                .tapForward()
+                .checkPageHeading("Send anonymous data")
+                .tapReject();
+
+        step("Проверяем", () -> {
+            $(accessibilityId("Search Wikipedia")).shouldBe(visible);
         });
     }
 }
