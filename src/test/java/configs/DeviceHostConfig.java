@@ -4,7 +4,7 @@ import drivers.BrowserstackDriver;
 import drivers.LocalDriver;
 
 public class DeviceHostConfig {
-    private static String host = System.getProperty("platform", "emulation");
+    private static String host = System.getProperty("deviceHost", "emulation");
 
     public static String getConfig() {
         switch (host) {
