@@ -31,6 +31,24 @@ dependencies {
     )
 }
 
+allure {
+    report {
+        version.set("2.24.0")
+    }
+    adapter { // отвечает за появление папочки build/allure-results
+        aspectjWeaver.set(true) //обработка аннотации @Step
+        frameworks {
+            junit5 { //название фреймворка
+                adapterVersion.set("2.24.0") //версия интеграции фреймворка и Allure
+            }
+        }
+    }
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
+
 test {
     systemProperties(System.getProperties())
     useJUnitPlatform()
