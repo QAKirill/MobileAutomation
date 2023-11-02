@@ -15,6 +15,7 @@ public class AndroidTests extends TestBase {
 
     @Test
     @Tag("Android")
+    @Tag("emulation")
     @DisplayName("Успешный поиск в википедии")
     void successfulSearchTest() {
         step("Пропускаем онбординг", () -> {
@@ -33,9 +34,15 @@ public class AndroidTests extends TestBase {
     }
 
     @Test
-    @Tag("Browserstack")
-    @DisplayName("При открытии статьи отображается ошибка")
-    void errorWhenOpeningArticleTest() {
+    @Tag("Android")
+    @DisplayName("Browserstack. При попытке открыть статью отображается ошибка")
+    void errorWhenOpeningArticleBrowserstackTest() {
+        step("Пропускаем онбординг", () -> {
+            if($(id("org.wikipedia.alpha:id/primaryTextView")).isDisplayed()){
+                back();
+            }
+        });
+
         step("Выполняем поиск", () -> {
             $(accessibilityId("Search Wikipedia")).click();
             $(id("org.wikipedia.alpha:id/search_src_text")).sendKeys("Messi");
@@ -54,6 +61,7 @@ public class AndroidTests extends TestBase {
 
     @Test
     @Tag("Android")
+    @Tag("emulation")
     @DisplayName("Успешное прохождение онбординга и поиск в википедии")
     void onboardingTest() {
         OnboardingPage page = new OnboardingPage();

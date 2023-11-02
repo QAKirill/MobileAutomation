@@ -1,5 +1,6 @@
 package tests;
 
+import helpers.Browserstack;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;

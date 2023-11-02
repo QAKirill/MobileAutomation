@@ -18,9 +18,7 @@ public class TestBase {
 
     @BeforeAll
     static void beforeAll() {
-        DeviceHostConfig config = new DeviceHostConfig();
-
-        Configuration.browser = config.getConfig();
+        Configuration.browser = DeviceHostConfig.getConfig();
         Configuration.browserSize = null;
         Configuration.timeout = 30000;
     }
@@ -33,7 +31,7 @@ public class TestBase {
 
     @AfterEach
     public void afterEach() {
-        if(System.getProperty("deviceHost").equals("emulation")) {
+        if(System.getProperty("deviceHost", "emulation").equals("emulation")) {
             Attach.screenshotAs("Last screenshot");
         }
 
@@ -42,7 +40,7 @@ public class TestBase {
         String sessionId = Selenide.sessionId().toString();
         closeWebDriver();
 
-        if(System.getProperty("deviceHost").equals("browserstack")){
+        if(System.getProperty("deviceHost", "emulation").equals("browserstack")){
             Attach.addVideo(sessionId);
         }
     }

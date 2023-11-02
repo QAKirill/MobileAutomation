@@ -4,11 +4,12 @@ import drivers.BrowserstackDriver;
 import drivers.LocalDriver;
 
 public class DeviceHostConfig {
-    private String host = System.getProperty("deviceHost");
+    private static String host = System.getProperty("platform", "emulation");
 
-    public String getConfig() {
+    public static String getConfig() {
         switch (host) {
-            case ("browserstack"):
+            case ("android"):
+            case ("ios"):
                 return BrowserstackDriver.class.getName();
             default:
                 return LocalDriver.class.getName();
