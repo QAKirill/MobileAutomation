@@ -15,7 +15,7 @@ public interface LocalDeviceConfig extends Config {
 
     @Key("AppPackage")
     @DefaultValue("org.wikipedia.alpha")
-    String getAppConfig();
+    String getAppPackage();
 
     @Key("AppActivity")
     @DefaultValue("org.wikipedia.main.MainActivity")

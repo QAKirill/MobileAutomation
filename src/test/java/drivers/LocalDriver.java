@@ -1,6 +1,8 @@
 package drivers;
 
 import com.codeborne.selenide.WebDriverProvider;
+import configs.LocalDeviceConfig;
+import helpers.ConfigReader;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import org.openqa.selenium.Capabilities;
@@ -22,13 +24,15 @@ public class LocalDriver implements WebDriverProvider {
     @Nonnull
     @Override
     public WebDriver createDriver(@Nonnull Capabilities capabilities){
+        LocalDeviceConfig config = ConfigReader.INSTANCE.getLocalDeviceConfig();
+
         UiAutomator2Options options = new UiAutomator2Options();
         options.setAutomationName(ANDROID_UIAUTOMATOR2)
-                .setPlatformVersion("13.0")
-                .setDeviceName("Pixel 7 Pro API 33")
+                .setPlatformVersion(config.getPlatformVersion())
+                .setDeviceName(config.getDeviceName())
                 .setApp(getAppPath())
-                .setAppPackage("org.wikipedia.alpha")
-                .setAppActivity("org.wikipedia.main.MainActivity");
+                .setAppPackage(config.getAppPackage())
+                .setAppActivity(config.getAppActivity());
 
         return new AndroidDriver(getAppiumServerUrl(), options);
     }
