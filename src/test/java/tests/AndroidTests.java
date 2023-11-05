@@ -60,7 +60,6 @@ public class AndroidTests extends TestBase {
     }
 
     @Test
-    @Tag("Android")
     @Tag("emulation")
     @DisplayName("Успешное прохождение онбординга и поиск в википедии")
     void onboardingTest() {
