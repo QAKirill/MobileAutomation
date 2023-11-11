@@ -2,7 +2,7 @@ package configs;
 
 import org.aeonbits.owner.Config;
 
-@Config.Sources({"classpath:${platform}.properties"})
+@Config.Sources({"classpath:${deviceHost}.properties"})
 
 public interface DeviceConfig extends Config {
     @Key("device")

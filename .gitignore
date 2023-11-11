@@ -9,3 +9,4 @@ notifications
 gradlew
 gradlew.bat
 settings.gradle
+/src/test/resources/apps/app-alpha-universal-release.apk

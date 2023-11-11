@@ -2,6 +2,7 @@ package helpers;
 
 import configs.AuthConfig;
 import configs.DeviceConfig;
+import configs.LocalDeviceConfig;
 import org.aeonbits.owner.ConfigFactory;
 
 public enum ConfigReader {
@@ -19,5 +20,12 @@ public enum ConfigReader {
 
     public AuthConfig getAuthConfig() {
         return AUTH_CONFIG;
+    }
+
+    private static final LocalDeviceConfig LOCAL_DEVICE_CONFIG =
+            ConfigFactory.create(LocalDeviceConfig.class, System.getProperties());
+
+    public LocalDeviceConfig getLocalDeviceConfig() {
+        return LOCAL_DEVICE_CONFIG;
     }
 }

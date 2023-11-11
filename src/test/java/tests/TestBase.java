@@ -3,7 +3,7 @@ package tests;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import drivers.BrowserstackDriver;
+import configs.DeviceHostConfig;
 import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
@@ -18,7 +18,7 @@ public class TestBase {
 
     @BeforeAll
     static void beforeAll() {
-        Configuration.browser = BrowserstackDriver.class.getName();
+        Configuration.browser = DeviceHostConfig.getConfig();
         Configuration.browserSize = null;
         Configuration.timeout = 30000;
     }
@@ -31,12 +31,17 @@ public class TestBase {
 
     @AfterEach
     public void afterEach() {
-        //Attach.screenshotAs("Last screenshot");
+        if(System.getProperty("deviceHost", "emulation").equals("emulation")) {
+            Attach.screenshotAs("Last screenshot");
+        }
+
         Attach.pageSource();
 
         String sessionId = Selenide.sessionId().toString();
         closeWebDriver();
 
-        Attach.addVideo(sessionId);
+        if(System.getProperty("deviceHost", "emulation").equals("browserstack")){
+            Attach.addVideo(sessionId);
+        }
     }
 }
