@@ -5,8 +5,7 @@
 - [Запуск автотестов](#arrow_forward-запуск-автотестов)
 - [Сборка в Jenkins](#jenkins)
 - [Пример Allure-отчета](#allure)
-- [Уведомления в Telegram с использованием бота](#telega)
-- [Видео примера запуска тестов в Selenoid](#Видео-запуска-тестов-в-Selenoid)
+- <a href="#movie">Видеопример прохождения тестов Browserstack</a>
 
 ## :computer: Использованный стек технологий
 
@@ -21,7 +20,7 @@
 <img width="6%" title="GitHub" src="attach/Logo/GitHub.svg">
 <img width="6%" title="Jenkins" src="attach/Logo/Jenkins.svg">
 <img width="6%" title="Appium" src="attach/Logo/Appium.svg">
-<img width="6%" title="Browserstack" src="attach/Logo/Broserstack.svg">
+<img width="6%" title="Browserstack" src="attach/Logo/Browserstack.svg">
 </p>
 
 ## 🏁 Реализованные проверки:
@@ -54,7 +53,7 @@ gradle clean android_test -DdeviceHost=android
 ```
 При выполнении команды, тесты запустятся удаленно в <code>Browserstack</code>.
 
-## <img name="jenkins" src="attach/Logo/Jenkins.svg" title="Jenkins" width="4%"/> <a href="https://jenkins.autotests.cloud/job/21-Yejik-java-TinkoffWebTests" target="blank">Сборка в Jenkins</a>
+## <img name="jenkins" src="attach/Logo/Jenkins.svg" title="Jenkins" width="4%"/> <a href="https://jenkins.autotests.cloud/job/21-Yejik-java-MobileAutomation" target="blank">Сборка в Jenkins</a>
 
 <p align="center">
 <img title="Jenkins Build" src="attach/Reports/JenkinsBuild.png">
@@ -84,9 +83,8 @@ gradle clean android_test -DdeviceHost=android
 </p>
 
 <a id="movie"></a>
-## <img alt="Browserstack" height="25" src="media/logo/Browserstack.svg" width="25"/></a> Видеопример выполнения теста Browserstack
+## <img alt="Browserstack" height="25" src="attach/Logo/Browserstack.svg" width="25"/></a> Видеопример выполнения теста Browserstack
 
-____
 <p align="center">
-<img title="Browserstack Video" src="media/screen/ErrorMovie.gif" width="350" height="350"  alt="video">   
+<img title="Browserstack Video" src="attach/Reports/ErrorMovie.gif" width="350" height="350"  alt="video">   
 </p>
